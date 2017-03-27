@@ -63,7 +63,7 @@ return [
     'administrator' => 'Administrator',
     'roles'         => 'Roles',
     'permissions'   => 'Permissions',
-    'slug'          => 'Slug',
+    'name'          => 'name',
 
     'created_at'    => 'Created At',
     'updated_at'    => 'Updated At',

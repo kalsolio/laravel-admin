@@ -67,14 +67,14 @@ class RoleController extends Controller
     {
         return Admin::grid(Role::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
-            $grid->slug(trans('admin::lang.slug'));
+            $grid->display_name(trans('admin::lang.display_name'));
             $grid->name(trans('admin::lang.name'));
 
             $grid->created_at(trans('admin::lang.created_at'));
             $grid->updated_at(trans('admin::lang.updated_at'));
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
-                if ($actions->row->slug == 'administrator') {
+                if ($actions->row->name == 'administrator') {
                     $actions->disableDelete();
                 }
             });
@@ -97,9 +97,9 @@ class RoleController extends Controller
         return Admin::form(Role::class, function (Form $form) {
             $form->display('id', 'ID');
 
-            $form->text('slug', trans('admin::lang.slug'))->rules('required');
             $form->text('name', trans('admin::lang.name'))->rules('required');
-            $form->multipleSelect('permissions', trans('admin::lang.permissions'))->options(Permission::all()->pluck('name', 'id'));
+            $form->text('display_name', trans('admin::lang.display_name'))->rules('required');
+            $form->multipleSelect('permissions', trans('admin::lang.permissions'))->options(Permission::all()->pluck('display_name', 'id'));
 
             $form->display('created_at', trans('admin::lang.created_at'));
             $form->display('updated_at', trans('admin::lang.updated_at'));

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'name'];
 
     /**
      * Create a new Eloquent model instance.

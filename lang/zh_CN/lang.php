@@ -63,7 +63,7 @@ return [
     'administrator' => '管理员',
     'roles'         => '角色',
     'permissions'   => '权限',
-    'slug'          => '标识',
+    'name'          => '标识',
 
     'created_at'    => '创建时间',
     'updated_at'    => '更新时间',

@@ -23,9 +23,9 @@ class RolesTest extends TestCase
     {
         $this->visit('admin/auth/roles/create')
             ->see('Roles')
-            ->submitForm('Submit', ['slug' => 'developer', 'name' => 'Developer...'])
+            ->submitForm('Submit', ['name' => 'developer', 'name' => 'Developer...'])
             ->seePageIs('admin/auth/roles')
-            ->seeInDatabase(config('admin.database.roles_table'), ['slug' => 'developer', 'name' => 'Developer...'])
+            ->seeInDatabase(config('admin.database.roles_table'), ['name' => 'developer', 'name' => 'Developer...'])
             ->assertEquals(2, Role::count());
     }
 
@@ -49,9 +49,9 @@ class RolesTest extends TestCase
 
         $this->visit('admin/auth/roles/create')
             ->see('Roles')
-            ->submitForm('Submit', ['slug' => 'developer', 'name' => 'Developer...'])
+            ->submitForm('Submit', ['name' => 'developer', 'name' => 'Developer...'])
             ->seePageIs('admin/auth/roles')
-            ->seeInDatabase(config('admin.database.roles_table'), ['slug' => 'developer', 'name' => 'Developer...'])
+            ->seeInDatabase(config('admin.database.roles_table'), ['name' => 'developer', 'name' => 'Developer...'])
             ->assertEquals(2, Role::count());
 
         $this->assertFalse(Administrator::find(2)->isRole('developer'));
@@ -74,9 +74,9 @@ class RolesTest extends TestCase
 
         $this->visit('admin/auth/roles/create')
             ->see('Roles')
-            ->submitForm('Submit', ['slug' => 'developer', 'name' => 'Developer...'])
+            ->submitForm('Submit', ['name' => 'developer', 'name' => 'Developer...'])
             ->seePageIs('admin/auth/roles')
-            ->seeInDatabase(config('admin.database.roles_table'), ['slug' => 'developer', 'name' => 'Developer...'])
+            ->seeInDatabase(config('admin.database.roles_table'), ['name' => 'developer', 'name' => 'Developer...'])
             ->assertEquals(2, Role::count());
 
         $this->delete('admin/auth/roles/2')

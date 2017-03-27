@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'display_name'];
 
     /**
      * Create a new Eloquent model instance.
@@ -61,7 +61,7 @@ class Role extends Model
      */
     public function can($permission)
     {
-        return $this->permissions()->where('slug', $permission)->exists();
+        return $this->permissions()->where('name', $permission)->exists();
     }
 
     /**

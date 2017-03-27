@@ -25,14 +25,14 @@ class PermissionsTest extends TestCase
     {
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-edit', 'name' => 'Can edit'])
+            ->submitForm('Submit', ['name' => 'can-edit', 'name' => 'Can edit'])
             ->seePageIs('admin/auth/permissions')
             ->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-delete', 'name' => 'Can delete'])
+            ->submitForm('Submit', ['name' => 'can-delete', 'name' => 'Can delete'])
             ->seePageIs('admin/auth/permissions')
-            ->seeInDatabase(config('admin.database.permissions_table'), ['slug' => 'can-edit', 'name' => 'Can edit'])
-            ->seeInDatabase(config('admin.database.permissions_table'), ['slug' => 'can-delete', 'name' => 'Can delete'])
+            ->seeInDatabase(config('admin.database.permissions_table'), ['name' => 'can-edit', 'name' => 'Can edit'])
+            ->seeInDatabase(config('admin.database.permissions_table'), ['name' => 'can-delete', 'name' => 'Can delete'])
             ->assertEquals(2, Permission::count());
 
         $this->assertTrue(Administrator::first()->can('can-edit'));
@@ -49,7 +49,7 @@ class PermissionsTest extends TestCase
     {
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-create', 'name' => 'Can Create'])
+            ->submitForm('Submit', ['name' => 'can-create', 'name' => 'Can Create'])
             ->seePageIs('admin/auth/permissions');
 
         $this->assertEquals(1, Permission::count());
@@ -65,7 +65,7 @@ class PermissionsTest extends TestCase
     {
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-create', 'name' => 'Can Create'])
+            ->submitForm('Submit', ['name' => 'can-create', 'name' => 'Can Create'])
             ->seePageIs('admin/auth/permissions');
 
         $this->assertEquals(1, Permission::count());
@@ -97,14 +97,14 @@ class PermissionsTest extends TestCase
 
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-update', 'name' => 'Can Update'])
+            ->submitForm('Submit', ['name' => 'can-update', 'name' => 'Can Update'])
             ->seePageIs('admin/auth/permissions');
 
         $this->assertEquals(1, Permission::count());
 
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-remove', 'name' => 'Can Remove'])
+            ->submitForm('Submit', ['name' => 'can-remove', 'name' => 'Can Remove'])
             ->seePageIs('admin/auth/permissions');
 
         $this->assertEquals(2, Permission::count());
@@ -158,9 +158,9 @@ class PermissionsTest extends TestCase
         // 2.add a role
         $this->visit('admin/auth/roles/create')
             ->see('Roles')
-            ->submitForm('Submit', ['slug' => 'developer', 'name' => 'Developer...'])
+            ->submitForm('Submit', ['name' => 'developer', 'name' => 'Developer...'])
             ->seePageIs('admin/auth/roles')
-            ->seeInDatabase(config('admin.database.roles_table'), ['slug' => 'developer', 'name' => 'Developer...'])
+            ->seeInDatabase(config('admin.database.roles_table'), ['name' => 'developer', 'name' => 'Developer...'])
             ->assertEquals(2, Role::count());
 
         $this->assertFalse(Administrator::find(2)->isRole('developer'));
@@ -177,7 +177,7 @@ class PermissionsTest extends TestCase
         //  4.add a permission
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-remove', 'name' => 'Can Remove'])
+            ->submitForm('Submit', ['name' => 'can-remove', 'name' => 'Can Remove'])
             ->seePageIs('admin/auth/permissions');
 
         $this->assertEquals(1, Permission::count());
@@ -198,17 +198,17 @@ class PermissionsTest extends TestCase
     {
         $this->visit('admin/auth/permissions/create')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-edit', 'name' => 'Can edit'])
+            ->submitForm('Submit', ['name' => 'can-edit', 'name' => 'Can edit'])
             ->seePageIs('admin/auth/permissions')
-            ->seeInDatabase(config('admin.database.permissions_table'), ['slug' => 'can-edit'])
+            ->seeInDatabase(config('admin.database.permissions_table'), ['name' => 'can-edit'])
             ->seeInDatabase(config('admin.database.permissions_table'), ['name' => 'Can edit'])
             ->assertEquals(1, Permission::count());
 
         $this->visit('admin/auth/permissions/1/edit')
             ->see('Permissions')
-            ->submitForm('Submit', ['slug' => 'can-delete'])
+            ->submitForm('Submit', ['name' => 'can-delete'])
             ->seePageIs('admin/auth/permissions')
-            ->seeInDatabase(config('admin.database.permissions_table'), ['slug' => 'can-delete'])
+            ->seeInDatabase(config('admin.database.permissions_table'), ['name' => 'can-delete'])
             ->assertEquals(1, Permission::count());
     }
 }

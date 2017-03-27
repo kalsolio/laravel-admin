@@ -63,7 +63,7 @@ return [
     'administrator' => 'Администратор',
     'roles'         => 'Роли',
     'permissions'   => 'Доступ',
-    'slug'          => 'Слаг',
+    'name'          => 'Слаг',
 
     'created_at'    => 'Дата создания',
     'updated_at'    => 'Дата обновления',
